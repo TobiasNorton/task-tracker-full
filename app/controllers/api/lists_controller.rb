@@ -27,13 +27,26 @@ class Api::ListsController < ApplicationController
 
 
   def create
+    new_list = List.create(list_params)
 
+    render json: {
+      id: new_list.id,
+      name: new_list.name,
+      color: new_list.color, 
+    }
   end
 
   def update
   end
 
   def destroy
+  end
+
+
+  private
+
+  def list_params
+    params.permit(:name, :color)
   end
 
 end
